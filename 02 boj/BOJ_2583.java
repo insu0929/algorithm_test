@@ -6,6 +6,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 
 /**
  * @author Insu Yang
@@ -14,6 +15,8 @@ public class BOJ_2583 {
 
     static int[][] map;
     static boolean[][] visited;
+
+
 
     public static void main(String[] args) throws IOException {
 
@@ -28,9 +31,9 @@ public class BOJ_2583 {
 
         int[][] rects = new int[k][2];
 
+
         for(int i = 0 ; i < k; i++){
             String[] rectCoor = br.readLine().split(" ");
-
 
         }
 
