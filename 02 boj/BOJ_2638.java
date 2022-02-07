@@ -89,6 +89,11 @@ public class BOJ_2638 {
 
     }
 
+    static void getAir2(int row, int col){
+
+
+    }
+
 
 
 
