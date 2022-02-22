@@ -27,12 +27,14 @@ public class Kakao2022_1 {
         int[] answer = new int[id_list.length];
 
         HashMap<String, Integer> map = new HashMap<>();
-        List<HashSet<String>> rep = new ArrayList<>();
+        List<HashSet<String>> rep = new ArrayList<>(); //누구에게 신고 당했는지
+        List<HashSet<String>> his = new ArrayList<>(); //누굴 신고 했는지
         HashSet<String> bans = new HashSet<>();
 
         for(int i = 0 ; i < id_list.length; i++){
             rep.add(new HashSet<>());
             map.put(id_list[i], i);
+            his.add(new HashSet<>());
         }
 
         for(int i = 0 ; i < report.length; i++){
@@ -42,6 +44,7 @@ public class Kakao2022_1 {
             String reportee = line[1];
 
             int id = map.get(reportee);
+            int id2 = map.get(reporter);
 
             HashSet<String> hs = rep.get(id);
             if(!hs.contains(reporter)){
@@ -52,10 +55,24 @@ public class Kakao2022_1 {
                 bans.add(reportee);
             }
             rep.set(id, hs);
+
+            HashSet<String> hashSet = his.get(id2);
+            hashSet.add(reportee);
+            his.set(id2, hashSet);
         }
 
+        for(int i = 0; i < id_list.length; i++){
+            int id = map.get(id_list[i]);
 
+            HashSet<String> hs = his.get(id);
 
+            int count = 0;
+            for(String ban : bans){
+                if(hs.contains(ban)) count++;
+            }
+
+            answer[i] = count;
+        }
         return answer;
     }
 }
