@@ -15,7 +15,7 @@ public class Kakao2019_2 {
     public static void main(String[] args){
 
         int N = 5;
-        int[] stages = {2, 1, 2, 6, 2, 4, 3, 3};
+        int[] stages = {2, 2, 2, 2, 2};
         //System.out.println(solution(N, stages));
         solution(N, stages);
     }
@@ -38,6 +38,7 @@ public class Kakao2019_2 {
         List<double[]> failRate = new ArrayList<>();
 
         for(int i = 1; i <= N; i++){
+
             double fail = (double)stuck[i] / (double)passed[i];
             failRate.add(new double[]{i, fail});
         }
@@ -55,8 +56,8 @@ public class Kakao2019_2 {
 
         int[] answer = new int[N];
 
-        for(int i = 1 ; i <= N; i++){
-            answer[i-1] = (int)failRate.get(i)[0];
+        for(int i = 0 ; i < N; i++){
+            answer[i] = (int)failRate.get(i)[0];
         }
 
         return answer;
