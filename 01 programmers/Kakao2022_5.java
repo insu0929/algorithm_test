@@ -18,6 +18,9 @@ public class Kakao2022_5 {
 
     public static void main(String[] args){
 
+        int[] info = {0,0,1,1,1,0,1,0,1,0,1,1};
+        int[][] edges = {{0,1},{1,2},{1,4},{0,8},{8,7},{9,10},{9,11},{4,3},{6,5},{4,6},{8,9}};
+        solution(info, edges);
     }
 
     public static int solution(int[] info, int[][] edges){
@@ -36,12 +39,39 @@ public class Kakao2022_5 {
             adj[parent].add(child);
         }
 
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        dfs(0, 0, 0, list);
 
-
-        return answer;
+        System.out.println(maxCount);
+        return maxCount;
     }
 
-    static void dfs()
+    static void dfs(int curNode, int sheepCnt, int wolfCnt, List<Integer> children) {
+
+        sheepCnt += type[curNode] ^ 1;
+        wolfCnt += type[curNode];
+
+        if (wolfCnt >= sheepCnt) return;
+
+        maxCount = Math.max(maxCount, sheepCnt);
+
+
+        List<Integer> list = new ArrayList<>();
+        list.addAll(children);
+
+        list.remove(Integer.valueOf(curNode));
+
+        if(adj[curNode] != null){
+            for(int nxt : adj[curNode]){
+                list.add(nxt);
+            }
+        }
+
+        for(int next : list){
+            dfs(next, sheepCnt, wolfCnt, list);
+        }
+    }
 
 
 }
